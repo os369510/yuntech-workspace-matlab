@@ -1,0 +1,10 @@
+clear all;clc;close all;
+n0=-5;
+n1=2;
+n2=16;
+[x,n]=impseq(n0,n1,n2);    
+w=[n1:n2];
+figure(1); 
+stem(w,x);
+axis([-10 30 0 1]);
+title('impulse');

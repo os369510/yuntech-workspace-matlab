@@ -1,0 +1,10 @@
+close all;clear all;clc;
+x=imread('K81481.bmp');
+y_Gamma=sCurveImage(x,1.5);
+y_Fuzzy=sFuzzyRules3x3(y_Gamma,3);
+y_Fuzzy_Med=medfilt2(y_Fuzzy,[3,3]);
+y=y_Fuzzy_Med;
+figure('Name','Original');
+imshow(x);
+figure('Name','Output');
+imshow(y);

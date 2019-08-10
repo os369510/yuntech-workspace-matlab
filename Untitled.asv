@@ -1,0 +1,35 @@
+close all;clear all;clc;
+%% Def.
+x=imread('4_900.bmp');
+% J=adapthisteq(x);
+
+x_edge_log=edge(x,'log');
+x_edge_log=not(x_edge_log);
+% imshow(x)
+% figure
+% imshow(J)
+% x_gamma=sCurveImage(x,0.5);
+x_edge_canny=edge(x,'canny');
+x_edge_canny=not(x_edge_canny);
+
+x_fuzzy=sFuzzyRules3x3(x,1);
+
+x_and=and(x_edge_log,x_fuzzy);
+x
+
+y=medfilt2(x_and,[3,3]);
+%% Plot
+figure('Name','Original')
+imshow(x);
+% figure('Name','histogram eqalization')
+% imshow(J);
+figure('Name','canny')
+imshow(x_edge_canny);
+figure('Name','log')
+imshow(x_edge_log);
+figure('Name','Fuzzy')
+imshow(x_fuzzy);
+figure('Name','and')
+imshow(x_and);
+figure('Name','Output')
+imshow(y);

@@ -1,0 +1,18 @@
+close all;clear all;clc;
+%initial setting
+x=wavread('DTMF_Signal.wav');
+SyllableNumber=7; % Syllable number
+SyllableLength=length(x)/SyllableNumber; % Syllable length
+fs=8000; %sample frequency
+N=[140,205,300]; % set N
+t=(0:N-1)/Fs; %t=1/deltaf
+pit=2*pi*t;
+for i=1:1:SyllableNumber
+    x_Cut=x( (((i-1)*SyllableLength)+1):i*SyllableLength ); %cut x
+    figure
+  %  for k=1:1:length(N)
+        X=abs(fft(x_Cut),140); % fft
+        plot(X);
+   %     hold on;
+  %  end
+end

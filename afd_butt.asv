@@ -1,0 +1,15 @@
+function [b,a]=afd_butt(Wp,Ws,Rp,As,edge_frequency);
+N= ceil( ( log10(( (10^(Rp/10)-1) / (10^(As/10)-1) )) ) ...
+            / (2*log10(Wp/Ws)) );
+switch(edge_frequency)
+    case 'passband'
+        Wc=Wp/ ((10^(Rp/10)-1)^(1/(2*N)));
+        CutC=Wc/(2*pi)
+    case 'stopband'
+        Wc=Ws/ ((10^(As/10)-1)^(1/(2*N)));
+        CutC=Wc/(2*pi)
+end
+[z,p,k]=buttap(N);
+b=k*poly(z);
+a=poly(p
+%[b,a]=deNormalize(z,p,k,Wc,N);

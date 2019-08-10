@@ -1,0 +1,14 @@
+clear all;close all;clc;
+
+N=50;
+n=0:1:10;
+F=10;
+x=linspace(0,4*pi,N);
+y=zeros(1,N);
+
+for i=0:1:length(n)-1
+    y(i+1)=y(i+1) + ((-1)^i) * (x^(2*n+1)) / (factorial(2*i+1));
+end
+
+title('Lab01. 10 Hz sine signal , sample frequency = 20 Hz');xlabel('\pi');ylabel('value');
+legend('sin signal');

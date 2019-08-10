@@ -1,0 +1,13 @@
+close all;clear all;clc;
+ws=.06;
+wp=.04;
+as=40;
+rp=.5;
+[N,wn]=ellipord(wp,ws,rp,as);
+[B,A]=ellip(N,rp,as,wn,'low');
+H=freqz(B,A);
+H=abs(H);
+h=ifft(H);
+plot(real(h));
+
+hnew=[h(length(h-15),length(h)),h(1:16)];

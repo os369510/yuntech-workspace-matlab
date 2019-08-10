@@ -1,0 +1,16 @@
+close all;clear all;clc;
+x=imread('­×Ãäµõ.bmp');
+y=sFuzzyRules3x3(x,3);
+y=medfilt2(y,[3,3]);
+y_canny=edge(x,'canny',180/255,3);
+y_sobel=edge(x,'sobel',20/255,'both');
+
+figure('Name','Golf defect');
+subplot(2,2,1);
+imshow(x);title('Original');
+subplot(2,2,2);
+imshow(not(y));title('Fuzzy');
+subplot(2,2,3);
+imshow(y_canny);title('Canny');
+subplot(2,2,4);
+imshow(y_sobel);title('Sobel');

@@ -1,0 +1,10 @@
+close all;clear all;clc;
+x=imread('Image0005.bmp');
+x=x(480-400:480+400,640-400:640+400);
+figure('Name','Ori');
+imshow(x);
+figure('Name','histogram');
+imhist(x);
+figure('Name','gamma correction');
+y=gammacorrection(x,1);
+imshow(y);

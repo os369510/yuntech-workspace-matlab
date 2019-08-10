@@ -1,0 +1,24 @@
+close all;clear all;clc;
+figure('Name','Question of Frequency Sampling for Differential');
+%% Define
+wp=0.25*pi;ws=0.35*pi; %//Pass band and Stop band
+M=50;L=M+1;%//order
+alpha=M/2; %//Shift
+Q=floor(alpha); %//shift
+om=linspace(0,2*pi,1001); %//frequency array
+k=0:M; %// frequency sampling
+psid = -alpha*2*pi/L*[(0:Q),-(L-(Q+1:M))]; %// phase
+Dw=2*pi/L; %//frequency per sampling
+%% Compute
+k1=floor(wp/Dw); %// pass band last point
+k2=ceil(ws/Dw); %// stop band first point
+w=((k2-1):-1:(k1+1))*Dw; %// Transition frequency with sampling
+A=0.5+0.5*cos(pi*(ws-w)/(ws-wp)); %// Transition value
+B=fliplr(A); %// Transition in another side
+Ad=[ones(1,k1+1),A,zeros(1,L-2*k2+1),B,ones(1,k1)]; %// amplitude by frequency sampling
+Hd=Ad.*exp(j*psid); %// frequency response by sampling
+hd=real(ifft(Hd)); %// impulse response
+h=hd.*rectwin(L)'; %// window
+H=freqz(h,1,om); %// frequency response of our designed
+%% plot
+plot(om,db(H)/pi);axis tight;xlabel('omg

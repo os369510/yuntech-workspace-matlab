@@ -1,0 +1,12 @@
+close all;clear all;clc;
+n=-50:50
+x=sin(.5*pi*n)
+ [y,a]=dnsample(x,4,1-n(1))
+ n1=0-a+1:length(y)-a
+ subplot(2,1,1)
+ stem(n,x)
+ title('x[n]');
+ subplot(2,1,2)
+ stem(n1,y)
+ title('y[n]');
+  axis tight

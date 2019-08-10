@@ -1,0 +1,14 @@
+close all;clear all;clc;
+x=imread('calibration_grid.png');
+x=rgb2gray(x);
+x=x(1:294,:);
+y=fft2(x);
+u=zeros(294,294);
+for i = 1:294
+    for j=1:294
+        if( (i<44 && j<44
+
+subplot(1,2,1);
+imshow(x);
+subplot(1,2,2);
+imshow(abs(y));
